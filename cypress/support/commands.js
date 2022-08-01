@@ -35,7 +35,7 @@
  */
 
 Cypress.Commands.add('setToken', () => {
-  cy.request({
+  cy.api({
     method: 'POST',
     url: '/sessions',
     body: {
@@ -44,8 +44,6 @@ Cypress.Commands.add('setToken', () => {
     }
   }).then(response => {
     expect(response.status).be.eq(200)
-    cy.log(response.body.token)
-    cy.log(response.body.user._id)
 
     Cypress.env('token', response.body.token)
     Cypress.env('id', response.body.user._id)
@@ -53,7 +51,7 @@ Cypress.Commands.add('setToken', () => {
 })
 
 Cypress.Commands.add('back2ThePast', () => {
-  cy.request({
+  cy.api({
     method: 'DELETE',
     url: `/back2thepast/${Cypress.env('id')}`
   }).then(response => {
