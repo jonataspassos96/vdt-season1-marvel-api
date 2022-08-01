@@ -21,7 +21,8 @@ describe('POST /characters', () => {
       },
       body: character
     }).then(response => {
-      expect(response.status).be.eq(201)
+      expect(response.status).to.eq(201)
+      expect(response.body.character_id.length).to.eq(24)
     })
   })
 

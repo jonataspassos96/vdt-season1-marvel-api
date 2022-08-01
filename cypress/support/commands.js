@@ -43,7 +43,7 @@ Cypress.Commands.add('setToken', () => {
       password: 'qa-cademy'
     }
   }).then(response => {
-    expect(response.status).be.eq(200)
+    expect(response.status).to.eq(200)
 
     Cypress.env('token', response.body.token)
     Cypress.env('id', response.body.user._id)
@@ -55,6 +55,6 @@ Cypress.Commands.add('back2ThePast', () => {
     method: 'DELETE',
     url: `/back2thepast/${Cypress.env('id')}`
   }).then(response => {
-    expect(response.status).be.equal(200);
+    expect(response.status).to.eq(200);
   })
 })
