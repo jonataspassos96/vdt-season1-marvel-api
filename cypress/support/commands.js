@@ -35,26 +35,38 @@
  */
 
 Cypress.Commands.add('setToken', () => {
-  cy.api({
-    method: 'POST',
-    url: '/sessions',
-    body: {
-      email: 'jonatas@qacademy.io',
-      password: 'qa-cademy'
-    }
-  }).then(response => {
-    expect(response.status).to.eq(200)
+    cy.api({
+        method: 'POST',
+        url: '/sessions',
+        body: {
+            email: 'jonatas@qacademy.io',
+            password: 'qa-cademy'
+        }
+    }).then(res => {
+        expect(res.status).to.eq(200)
 
-    Cypress.env('token', response.body.token)
-    Cypress.env('id', response.body.user._id)
-  })
+        Cypress.env('token', res.body.token)
+        Cypress.env('id', res.body.user._id)
+    })
 })
 
 Cypress.Commands.add('back2ThePast', () => {
-  cy.api({
-    method: 'DELETE',
-    url: `/back2thepast/${Cypress.env('id')}`
-  }).then(response => {
-    expect(response.status).to.eq(200);
-  })
+    cy.api({
+        method: 'DELETE',
+        url: `/back2thepast/${Cypress.env('id')}`
+    }).then(res => {
+        expect(res.status).to.eq(200);
+    })
+})
+
+Cypress.Commands.add('postCharacter', (payload) => {
+    cy.api({
+        method: 'POST',
+        url: '/characters',
+        failOnStatusCode: false,
+        headers: {
+            authorization: Cypress.env('token')
+        },
+        body: payload
+    }).then(res => res)
 })
