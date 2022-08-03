@@ -1,3 +1,6 @@
+import { createCharacter } from '../fixtures/characters.json'
+
+
 describe('POST /characters', () => {
 
     before(() => {
@@ -6,14 +9,7 @@ describe('POST /characters', () => {
     })
 
     it('deve cadastrar um personagem', () => {
-        const character = {
-            name: 'Wanda Maximoff',
-            alias: 'Feiticeira Escarlate',
-            team: ['vingadores'],
-            active: true
-        }
-
-        cy.postCharacter(character)
+        cy.postCharacter(createCharacter[1])
             .then(res => {
                 expect(res.status).to.eq(201)
                 expect(res.body.character_id.length).to.eq(24)
@@ -22,25 +18,15 @@ describe('POST /characters', () => {
 
     context('quando o personagem já existe', () => {
 
-        const character = {
-            name: 'Pietro Maximoff',
-            alias: 'Mercurio',
-            team: [
-                'vingadores da costa oeste',
-                'irmandade de mutantes'
-            ],
-            active: true
-        }
-
         before(() => {
-            cy.postCharacter(character)
+            cy.postCharacter(createCharacter[2])
                 .then(res => {
                     expect(res.status).to.eq(201)
                 })
         })
 
         it('não deve cadastrar duplicado', () => {
-            cy.postCharacter(character)
+            cy.postCharacter(createCharacter[2])
                 .then(res => {
                     expect(res.status).to.eq(400)
                     expect(res.body.error).to.eq('Duplicate character')
