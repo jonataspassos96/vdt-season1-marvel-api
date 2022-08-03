@@ -42,7 +42,7 @@ Cypress.Commands.add('setToken', () => {
             email: 'jonatas@qacademy.io',
             password: 'qa-cademy'
         }
-    }).then(res => {
+    }).as('login').then(res => {
         expect(res.status).to.eq(200)
 
         Cypress.env('token', res.body.token)
@@ -54,7 +54,7 @@ Cypress.Commands.add('back2ThePast', () => {
     cy.api({
         method: 'DELETE',
         url: `/back2thepast/${Cypress.env('id')}`
-    }).then(res => {
+    }).as('clean heroes').then(res => {
         expect(res.status).to.eq(200);
     })
 })
@@ -68,5 +68,24 @@ Cypress.Commands.add('postCharacter', (payload) => {
             authorization: Cypress.env('token')
         },
         body: payload
-    }).then(res => res)
+    }).as('created hero').then(res => res)
+})
+
+Cypress.Commands.add('getCharacters', (payload = '') => {
+    cy.api({
+        method: 'GET',
+        url: `/characters${payload}`,
+        headers: {
+            authorization: Cypress.env('token')
+        }
+    }).as('list heroes').then(res => res)
+})
+
+Cypress.Commands.add('populateCharacters', (payload) => {
+    payload.forEach(c => {
+        cy.postCharacter(c).then(res => {
+            expect(res.status).to.eq(201)
+            expect(res.body.character_id.length).to.eq(24)
+        })
+    })
 })

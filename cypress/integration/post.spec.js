@@ -1,4 +1,4 @@
-import { createCharacter } from '../fixtures/characters.json'
+import characters from '../fixtures/characters.json'
 
 
 describe('POST /characters', () => {
@@ -9,7 +9,7 @@ describe('POST /characters', () => {
     })
 
     it('deve cadastrar um personagem', () => {
-        cy.postCharacter(createCharacter[1])
+        cy.postCharacter(characters[1])
             .then(res => {
                 expect(res.status).to.eq(201)
                 expect(res.body.character_id.length).to.eq(24)
@@ -19,14 +19,14 @@ describe('POST /characters', () => {
     context('quando o personagem já existe', () => {
 
         before(() => {
-            cy.postCharacter(createCharacter[2])
+            cy.postCharacter(characters[2])
                 .then(res => {
                     expect(res.status).to.eq(201)
                 })
         })
 
         it('não deve cadastrar duplicado', () => {
-            cy.postCharacter(createCharacter[2])
+            cy.postCharacter(characters[2])
                 .then(res => {
                     expect(res.status).to.eq(400)
                     expect(res.body.error).to.eq('Duplicate character')
