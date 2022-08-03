@@ -9,10 +9,6 @@ describe('POST /characters', () => {
         active: true
     }
 
-    before(() => {
-        cy.setToken()
-    })
-
     it('deve cadastrar um personagem', () => {
         cy.postCharacter(character)
             .then(res => {

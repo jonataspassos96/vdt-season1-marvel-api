@@ -10,8 +10,6 @@ describe('DELETE /characters', () => {
     }
 
     before(() => {
-        cy.setToken()
-
         cy.postCharacter(character).then(res => {
             Cypress.env('characterId', res.body.character_id)
         })

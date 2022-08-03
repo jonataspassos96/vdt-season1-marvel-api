@@ -3,8 +3,6 @@ import characters from '../fixtures/characters.json'
 describe('GET /characters', () => {
 
     before(() => {
-        cy.setToken()
-
         cy.populateCharacters(characters)
     })
 
