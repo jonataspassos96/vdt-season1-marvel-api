@@ -90,3 +90,14 @@ Cypress.Commands.add('populateCharacters', (payload) => {
         })
     })
 })
+
+Cypress.Commands.add('deleteCharacter', (payload = '') => {
+    cy.api({
+        method: 'DELETE',
+        url: `/characters/${payload}`,
+        failOnStatusCode: false,
+        headers: {
+            authorization: Cypress.env('token')
+        }
+    }).as('deleted hero').then(res => res)
+})
