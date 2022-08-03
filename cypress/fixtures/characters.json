@@ -1,0 +1,64 @@
+{
+    "createCharacter": [
+        {
+            "name": "Charles Xavier",
+            "alias": "Professor X",
+            "team": [
+                "x-men",
+                "illuminatis"
+            ],
+            "active": true
+        },
+        {
+            "name": "Wanda Maximoff",
+            "alias": "Feiticeira Escarlate",
+            "team": [
+                "vingadores"
+            ],
+            "active": true
+        },
+        {
+            "name": "Pietro Maximoff",
+            "alias": "Mercurio",
+            "team": [
+                "vingadores da costa oeste",
+                "irmandade de mutantes"
+            ],
+            "active": true
+        }
+    ],
+    "listCharacters": [
+        {
+            "team": [
+                "x-men",
+                "illuminatis"
+            ],
+            "_id": "62e9494595809000169b069b",
+            "name": "Charles Xavier",
+            "alias": "Professor X",
+            "active": true,
+            "user_id": "62e80f62fd8c5f0016051671"
+        },
+        {
+            "team": [
+                "vingadores"
+            ],
+            "_id": "62e9494695809000169b069e",
+            "name": "Wanda Maximoff",
+            "alias": "Feiticeira Escarlate",
+            "active": true,
+            "user_id": "62e80f62fd8c5f0016051671"
+        },
+        {
+            "team": [
+                "vingadores da costa oeste",
+                "irmandade de mutantes"
+            ],
+            "_id": "62e9494795809000169b06a1",
+            "name": "Pietro Maximoff",
+            "alias": "Mercurio",
+            "active": true,
+            "user_id": "62e80f62fd8c5f0016051671"
+        }
+    ]
+}
