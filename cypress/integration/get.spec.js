@@ -4,7 +4,6 @@ describe('GET /characters', () => {
 
     before(() => {
         cy.setToken()
-        cy.back2ThePast()
 
         cy.populateCharacters(characters)
     })

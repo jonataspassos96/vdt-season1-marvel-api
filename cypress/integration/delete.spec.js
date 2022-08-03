@@ -2,11 +2,17 @@ import characters from '../fixtures/characters.json'
 
 describe('DELETE /characters', () => {
 
+    const character = {
+        name: 'Peter Parker',
+        alias: 'Homem Aranha',
+        team: ['novos vingadores'],
+        active: true
+    }
+
     before(() => {
         cy.setToken()
-        cy.back2ThePast()
 
-        cy.postCharacter(characters[0]).then(res => {
+        cy.postCharacter(character).then(res => {
             Cypress.env('characterId', res.body.character_id)
         })
     })
