@@ -75,6 +75,7 @@ Cypress.Commands.add('getCharacters', (payload = '') => {
     cy.api({
         method: 'GET',
         url: `/characters${payload}`,
+        failOnStatusCode: false,
         headers: {
             authorization: Cypress.env('token')
         }

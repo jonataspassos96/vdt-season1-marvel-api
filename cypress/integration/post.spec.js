@@ -1,6 +1,5 @@
 import characters from '../fixtures/characters.json'
 
-
 describe('POST /characters', () => {
 
     before(() => {
@@ -22,6 +21,7 @@ describe('POST /characters', () => {
             cy.postCharacter(characters[2])
                 .then(res => {
                     expect(res.status).to.eq(201)
+                    expect(res.body.character_id.length).to.eq(24)
                 })
         })
 
